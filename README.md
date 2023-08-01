@@ -35,5 +35,41 @@ To apply the changes immediately, either close and reopen your terminal or run t
 -   `source ~/.bashrc`
 ###### Note: If you made changes to a different shell configuration file, replace "~/.bashrc" with the appropriate file path.
 
-Now, you should be able to run the gitq tool from any location and it works exactly the same as git but with additional features, example,
--   `gitq --help`
+Now, you should be able to run the gitq tool from any location and it works exactly the same as git but with additional features.
+For example, the below command shows an explanation on what the "git log" shows,
+# gitq log -e
+
+Commit ID: This is a unique identifier for a particular commit. It is a long string of alphanumeric characters, typically shown as a SHA-1 hash. The commit ID uniquely identifies each commit in the Git history.
+
+HEAD -> master: This indicates the current branch you are on (HEAD) and the branch it points to (master). In Git, HEAD represents the current commit or branch that you have checked out. In this case, it means you are on the master branch.
+
+origin/master: This refers to the 'master' branch on the remote repository, typically named 'origin.' When you clone a repository, 'origin' is the default name given to the remote repository from which you cloned.
+
+origin/HEAD: This refers to the default branch on the remote repository. It points to the same branch as origin/master, which is typically the default branch of the remote repository.
+
+Author: The author of the commit. It includes the name and email address of the person who made the changes. The author is the person who initially created the changes.
+
+Date: The date and time when the commit was made. It shows the timestamp of when the changes were committed.
+
+Commit Message: This is the descriptive message provided by the author when they committed the changes. The commit message explains the purpose of the commit, the changes made, and any other relevant information about the commit.
+## master...origin/master
+```
+
+Similarly, the below command shows a warning if your baseline is diverged from origin/master unintentionally, and also provides the command to bring back your repository to up to date.
+
+```bash
+# gitq status
+
+HEAD detached at 094b799
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   gitq.sh
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+WARNING!!
+You are diverged from the origin master and missing 'origin/master' in your current baseline.
+If you want to bring your repository up to date, please run the following command: 
+gitq fetch origin master && gitq rebase origin master
+```
