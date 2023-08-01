@@ -10,18 +10,18 @@ Embrace the power of a more intuitive and user-friendly Git experience. Try gitq
 
 ## Steps (LINUX)
 
-Clone this repo wherever you prefer, for simplifying things I use my home folder in this case.
+Clone this repo wherever you prefer, for simplifying things I use home folder in this case.
 -   `cd ~`
 -   `git clone git@github.com:yebh17/gitq.git`
 -   `cd gitq`
 
-We need to make the script permanently available in your PATH, so that gitq is accessible from any path.
+We need to make the script permanently available in the PATH, so that gitq is accessible from any path.
 -   `mkdir -p ~/bin`
 
 Copy the gitq script to the bin folder you just created.
 -   `cp gitq.sh ~/bin/gitq`
 
-Add the "bin" directory to your PATH.
+Add this "bin" directory to the PATH.
 -   `nano ~/.bashrc`
 
 Add the following line at the end of the file.
