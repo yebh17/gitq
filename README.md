@@ -37,6 +37,7 @@ To apply the changes immediately, either close and reopen your terminal or run t
 
 Now, you should be able to run the gitq tool from any location and it works exactly the same as git but with additional features.
 For example, the below command shows an explanation on what the "git log" shows,
+```
 # gitq log -e
 
 Commit ID: This is a unique identifier for a particular commit. It is a long string of alphanumeric characters, typically shown as a SHA-1 hash. The commit ID uniquely identifies each commit in the Git history.
@@ -56,14 +57,13 @@ Commit Message: This is the descriptive message provided by the author when they
 ```
 
 Similarly, the below command shows a warning if your baseline is diverged from origin/master unintentionally, and also provides the command to bring back your repository to up to date.
-
-```bash
+```
 # gitq status
 
 HEAD detached at 094b799
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
+(use "git add <file>..." to update what will be committed)
+(use "git restore <file>..." to discard changes in working directory)
         modified:   gitq.sh
 
 no changes added to commit (use "git add" and/or "git commit -a")
