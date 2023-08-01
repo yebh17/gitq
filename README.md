@@ -24,9 +24,8 @@ Copy the gitq script to the bin folder you just created.
 Add this "bin" directory to the PATH.
 -   `nano ~/.bashrc`
 
-Add the following line at the end of the file.
+Add the following line at the end of the file and then save and close the file.
 -   `export PATH="$HOME/bin:$PATH"`
-Save and close the file.
 
 ###### Note: If you are using a different shell (e.g., Zsh), use the appropriate configuration file (e.g., ~/.zshrc) instead.
 
