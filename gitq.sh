@@ -109,6 +109,17 @@ git_wrapper() {
     fi
 }
 
+check_origin_master() {
+    if !  git status -sb | grep "origin/master"
+    then
+        echo""
+        echo "WARNING!!"
+        echo "You are diverged from the origin master and missing 'origin/master' in your current baseline."
+        echo "If it was intended to checkout to a different commit then you can ignore this message"
+        echo -e "If you want to bring your repository up to date, please run the following command: \ngitq fetch origin master && gitq rebase origin master"
+    fi
+}
+
 # Main function
 main() {
 
@@ -120,6 +131,9 @@ main() {
 
     # Set git config if needed
     setup_git_config
+
+    # Check if origin/master is diverged  
+    check_origin_master
 }
 
 main "$@"
