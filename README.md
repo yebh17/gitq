@@ -17,7 +17,7 @@ If you wanted to clone via ssh then run the following.
 -   `git clone git@github.com:yebh17/gitq.git` 
 
 If you wanted to clone via https then run the following. 
--   `git clone https://github.com/yebh17/bash_aliases.git` 
+-   `git clone https://github.com/yebh17/gitq.git` 
 
 We need to make the script permanently available in the PATH, so that gitq is accessible from any path.
 -   `mkdir -p ~/bin`
