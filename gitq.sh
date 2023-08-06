@@ -123,8 +123,9 @@ check_origin_master() {
         echo""
         echo "WARNING!!"
         echo "You are diverged from the origin master and missing 'origin/master' in your current baseline."
-        echo "If it was intended to checkout to a different commit then you can ignore this message"
-        echo -e "If you want to bring your repository up to date, please run the following command: \ngitq fetch origin master && gitq rebase origin master"
+        echo "If it was intended to checkout to a different commit or working on your private branch then you can ignore this message"
+        echo -e "If you think your local master has diverged and would like to up to date with remote master, please run the following command: \ngitq fetch origin master && gitq rebase origin master\n"
+        echo -e "If you want to update your local feature branch with your remote master, please run the following command:: \ngitq checkout master\ngitq rebase origin master\ngitq rebase master <feature-branch>"
     fi
 }
 
