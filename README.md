@@ -75,6 +75,13 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 WARNING!!
 You are diverged from the origin master and missing 'origin/master' in your current baseline.
-If you want to bring your repository up to date, please run the following command: 
+If it was intended to checkout to a different commit or working on your private branch then you can ignore this message
+
+If you think your local master has diverged and would like to up to date with remote master, please run the following command: 
 gitq fetch origin master && gitq rebase origin master
+
+If you want to update your local feature branch with your remote master, please run the following command:: 
+gitq checkout master
+gitq rebase origin master
+gitq rebase master <feature-branch>
 ```
