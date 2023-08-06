@@ -80,6 +80,14 @@ set_git_editor() {
     fi
 }
 
+check_origin_master() {
+    if !  git status -sb | grep "origin/master"
+    then
+        echo "You are diverged from the origin master and missing 'origin/master' in your current baseline."
+        echo "If you want to bring your repository up to date, please run the following command: gitq pull"
+    fi
+}
+
 display_git_log_explanation() {
     echo "
 Commit ID: This is a unique identifier for a particular commit. It is a long string of alphanumeric characters, typically shown as a SHA-1 hash. The commit ID uniquely identifies each commit in the Git history.
@@ -132,7 +140,7 @@ main() {
     # Set git config if needed
     setup_git_config
 
-    # Check if origin/master is diverged  
+    # Check if master branch is diverged
     check_origin_master
 }
 
