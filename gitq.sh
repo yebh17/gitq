@@ -42,7 +42,7 @@ set_git_editor() {
 }
 
 check_origin_master() {
-    if [ -z "$(git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | grep 'origin/master, origin/HEAD, master')" ]; then
+    if [ -z "$(git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | grep 'origin/master, origin/HEAD')" ]; then
         echo ""
         echo "------------------------------------------------------------------------"
         echo -e "⚠️ WARNING! Diverged from 'origin/master' ⚠️\n"
