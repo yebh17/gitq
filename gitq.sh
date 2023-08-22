@@ -60,24 +60,7 @@ display_git_log_explanation() {
     echo "origin/master: Default branch on remote repository."
     echo "Author: The person who made the changes."
     echo "Date: Timestamp when the commit was made."
-    echo "Commit Message: Descriptive message explaining the changes."
-}
-
-show_visual_guide() {
-    echo "Visual Guide to Interactive Rebase:"
-    echo "----------------------------------"
-    # Add ASCII art illustration here
-    echo "Step-by-step guide to reordering, squashing, and more."
-    echo "Press 'q' to exit the guide."
-    read -n 1 -s -r -p "Press any key to continue..."
-}
-
-show_commit_color_legend() {
-    echo "Commit Color Legend:"
-    echo "----------------------------------"
-    echo -e "\e[32mGreen\e[0m: Picked (use commit)"
-    echo -e "\e[33mYellow\e[0m: Squashed (use commit, but squash)"
-    echo -e "\e[31mRed\e[0m: Removed (omit commit)"
+    echo -e "Commit Message: Descriptive message explaining the changes.\n"
 }
 
 interactive_rebase_help_text() {
