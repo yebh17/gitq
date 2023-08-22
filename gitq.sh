@@ -42,13 +42,19 @@ set_git_editor() {
 }
 
 check_origin_master() {
-    if ! git status -sb | grep -q "origin/master"; then
+    if [ -z "$(git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | grep '(origin/master, origin/HEAD, master)')" ]; then
         echo ""
-        echo "⚠️ WARNING! Diverged from 'origin/master' ⚠️"
-        echo -e "Your current branch has diverged from 'origin/master'."
-        echo -e "If you want to bring your repository up to date, run: \n    gitq pull"
-        echo -e "If you are working on a private branch, you can ignore this message."
-        echo -e "If you want to update your feature branch with remote master: \n    gitq checkout master\ngitq rebase origin master\ngitq rebase master <feature-branch>"
+        echo "------------------------------------------------------------------------"
+        echo -e "⚠️ WARNING! Diverged from 'origin/master' ⚠️\n"
+        echo -e "* If you wantedly checked-out to a particular commit diverging from 'origin/master' (or) wantedly kept your baseline behind 'origin/master', you can IGNORE this message\n"
+        echo -e "* If you checked-out to a particular commit diverging from 'origin/master' (or) If you are stuck with your baseline being behind 'origin/master' and wanted to have your current baseline up to date with 'origin/master', you can run:\n"
+        if [ '$(git rev-parse --abbrev-ref HEAD)' = "master" ]; then
+            echo -e "> git pull origin master\n"
+        else
+            echo -e "> git pull origin $(git rev-parse --abbrev-ref HEAD)\n"
+            echo -e "* If you want to update your local "$(git rev-parse --abbrev-ref HEAD)" branch with remote master, run:\n> gitq checkout master\n> gitq rebase origin master\n> gitq rebase master $(git rev-parse --abbrev-ref HEAD)"
+        fi
+        echo "------------------------------------------------------------------------"
     fi
 }
 
@@ -60,24 +66,7 @@ display_git_log_explanation() {
     echo "origin/master: Default branch on remote repository."
     echo "Author: The person who made the changes."
     echo "Date: Timestamp when the commit was made."
-    echo "Commit Message: Descriptive message explaining the changes."
-}
-
-show_visual_guide() {
-    echo "Visual Guide to Interactive Rebase:"
-    echo "----------------------------------"
-    # Add ASCII art illustration here
-    echo "Step-by-step guide to reordering, squashing, and more."
-    echo "Press 'q' to exit the guide."
-    read -n 1 -s -r -p "Press any key to continue..."
-}
-
-show_commit_color_legend() {
-    echo "Commit Color Legend:"
-    echo "----------------------------------"
-    echo -e "\e[32mGreen\e[0m: Picked (use commit)"
-    echo -e "\e[33mYellow\e[0m: Squashed (use commit, but squash)"
-    echo -e "\e[31mRed\e[0m: Removed (omit commit)"
+    echo -e "Commit Message: Descriptive message explaining the changes.\n"
 }
 
 interactive_rebase_help_text() {
