@@ -46,13 +46,16 @@ check_origin_master() {
         echo ""
         echo "------------------------------------------------------------------------"
         echo -e "⚠️ WARNING! Diverged from 'origin/master' ⚠️\n"
-        echo -e "* If you wantedly checked-out to a particular commit diverging from 'origin/master' (or) wantedly kept your baseline behind 'origin/master', you can IGNORE this message\n"
-        echo -e "* If you checked-out to a particular commit diverging from 'origin/master' (or) If you are stuck with your baseline being behind 'origin/master' and wanted to have your current baseline up to date with 'origin/master', you can run:\n"
-        if [ '$(git rev-parse --abbrev-ref HEAD)' = "master" ]; then
+        echo -e "* If you intentionally checked out a specific commit diverging from 'origin/master', or if you intentionally kept your branch behind 'origin/master', you can IGNORE this message.\n"
+        echo -e "* If you unintentionally checked out a specific commit diverging from 'origin/master', or if your branch is behind 'origin/master' and you want to update it, you can run:\n"
+        
+        current_branch=$(git rev-parse --abbrev-ref HEAD)
+        
+        if [ "$current_branch" = "master" ]; then
             echo -e "> git pull origin master\n"
         else
-            echo -e "> git pull origin $(git rev-parse --abbrev-ref HEAD)\n"
-            echo -e "* If you want to update your local "$(git rev-parse --abbrev-ref HEAD)" branch with remote master, run:\n> gitq checkout master\n> gitq rebase origin master\n> gitq rebase master $(git rev-parse --abbrev-ref HEAD)"
+            echo -e "> git pull origin $current_branch\n"
+            echo -e "* If you want to update your local \"$current_branch\" branch with remote master, run:\n> git checkout master\n> git pull origin master\n> git checkout $current_branch\n> git rebase master"
         fi
         echo "------------------------------------------------------------------------"
     fi
